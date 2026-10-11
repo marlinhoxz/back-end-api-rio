@@ -1,6 +1,8 @@
 import express from "express";
 import busRouter from "./routes/bus.routes.js";
 import { refreshBusCache } from "./services/bus.services.js";
+import lineRouter from "./routes/line.routes.js";
+
 
 const app = express();
 const PORT = 3001;
@@ -30,6 +32,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/buses", busRouter);
+
+
+app.use('/api/lines', lineRouter)
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);

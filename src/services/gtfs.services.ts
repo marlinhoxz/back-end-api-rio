@@ -1,11 +1,4 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const currentFile = fileURLToPath(import.meta.url);
-const currentDirectory = path.dirname(currentFile);
-
-const shapesPath = path.resolve(currentDirectory, "../data/gtfs/shapes.txt");
+import { readCsv } from "./gtfs.routes.services.js";
 
 export type ShapePoint = {
   latitude: number;
@@ -13,26 +6,43 @@ export type ShapePoint = {
   sequence: number;
 };
 
-export async function getShapesPoints(shapdeID: string): Promise<ShapePoint[]> {
-  const content = await readFile(shapesPath, "utf-8");
+async function buildShapesIndex(): Promise<Map<string, ShapePoint[]>> {
+  const rows = await readCsv("shapes.txt", [
+    "shape_id",
+    "shape_pt_sequence",
+    "shape_pt_lat",
+    "shape_pt_lon",
+  ]);
 
-  const rows = content.trim().split(/\r?\n/);
-  const [, ...dateRows] = rows;
+  const index = new Map<string, ShapePoint[]>();
 
-  const points: ShapePoint[] = [];
+  for (const row of rows) {
+    const points = index.get(row.shape_id) ?? [];
 
-  for (const row of dateRows) {
-    const [currentShapeID, sequence, latitude, longitude] = row.split(",");
-
-    if (currentShapeID !== shapdeID) {
-      continue;
-    }
     points.push({
-      sequence: Number(sequence),
-      latitude: Number(latitude),
-      longitude: Number(longitude),
+      sequence: Number(row.shape_pt_sequence),
+      latitude: Number(row.shape_pt_lat),
+      longitude: Number(row.shape_pt_lon),
     });
+
+    index.set(row.shape_id, points);
   }
 
-  return points.sort((a, b) => a.sequence - b.sequence);
+  for (const points of index.values()) {
+    points.sort((a, b) => a.sequence - b.sequence);
+  }
+
+  return index;
+}
+
+let shapesPromise: Promise<Map<string, ShapePoint[]>> | null = null;
+
+export async function getShapesPoints(shapeId: string): Promise<ShapePoint[]> {
+  shapesPromise ??= buildShapesIndex().catch((error) => {
+    shapesPromise = null;
+    throw error;
+  });
+
+  const shapes = await shapesPromise;
+  return shapes.get(shapeId) ?? [];
 }
