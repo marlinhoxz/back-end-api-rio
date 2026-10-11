@@ -1,0 +1,108 @@
+route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_color,route_text_color
+O0635AAA0A,RIOH2,635,Terminal Fundão - Vila Isabel,,700,EA0A2A,FFFFFF
+jsw8,RIOB8,820,Rio da Prata - Terminal Mato Alto,,700,FF7600,000000
+5mdh,RIOC2,864,Terminal Campo Grande - Terminal Sulacap,,700,A0662E,FFFFFF
+8qdl,RIOA1,750,Sepetiba - Terminal Deodoro,,700,,
+O0754AAA0A,RIOA1,754,São Fernando - Terminal Deodoro,,700,8330A5,FFFFFF
+O0934AAA0A,RIOH2,934,Ribeira - Portuguesa,,700,,
+j5cg,RIOC1,768,Viegas - Terminal Deodoro,,700,,
+O0393AAA0A,RIOC1,393,Bangu - Candelária,,700,A0662E,FFFFFF
+O0746AAN0A,RIOC1,SN746,Jabour - Cascadura,,700,,
+buxe,RIOC1,SN768,Viegas - Terminal Deodoro,,700,,
+O0393AAN0A,RIOC1,SN393,Bangu - Candelária,,700,A0662E,FFFFFF
+hyru,RIOC1,SN918,Jardim Violeta - Bonsucesso,,700,,
+be9q,RIOC2,SN812,Largo do Mendanha - Bangu,,700,,
+n5sx,RIOC2,SN819,Bangu - Jardim Bangu,,700,,
+vlaz,RIOC2,SV819,Jardim Bangu - Bangu,,700,,
+upe0,RIOA1,758,Terminal Pingo D'Água - Metrô Coelho Neto,,700,,
+cpkr,RIOC1,800,Vila Kennedy - Terminal Tanque,,700,,
+1vd0,RIOH1,930,Terminal Fundão - Barra da Tijuca,,700,,
+ka0d,RIOH1,SV634,Bananal - Saens Peña,,700,,
+O0935AAA0A,RIOH2,935,Ribeira - Portuguesa,,700,,
+l2hd,RIOH2,979,Terminal Fundão - Terminal Madureira,,700,EA0A2A,FFFFFF
+O0922AAV0A,RIOH2,SV922,Tubiacanga - Terminal Fundão,,700,EA0A2A,FFFFFF
+O0439AAA0A,RIOI3,439,Grajaú - Leblon,,700,,
+O0222AAA0A,RIOI3,222,Grajaú - Gamboa,,700,,
+O0924AAA0A,RIOH2,924,Ribeira - Terminal Fundão,,700,,
+O0217AAA0A,RIOI3,217,Andaraí - Carioca,,700,B1B1B1,000000
+O0323AAA0A,RIOH1,323,Bananal - Castelo,,700,EA0A2A,FFFFFF
+O0328AAA0A,RIOH1,328,Bananal - Candelária,,700,EA0A2A,FFFFFF
+O0328AAN0A,RIOH1,SN328,Bananal - Candelária,,700,EA0A2A,FFFFFF
+x30o,RIOA1,SN759,Santa Cruz - Candelária,,700,,
+O0929AAA0A,RIOH1,929,Bancários - Terminal Fundão,,700,,
+O0432AAA0A,RIOI3,432,Vila Isabel - Gávea,,700,,
+O0435AAA0A,RIOI3,435,Grajaú - Gávea,,700,B1B1B1,000000
+O0433AAA0A,RIOI3,433,Grajaú - Siqueira Campos,,700,,
+O0422AAN0A,RIOI3,SN422,Méier - Cosme Velho,,700,B1B1B1,000000
+O0433AAN0A,RIOI3,SN433,Grajaú - Gávea,,700,,
+O0322AAA0A,RIOH1,322,Ribeira - Castelo,,700,,
+O0369AAA0A,RIOC1,369,Bangu - Candelária,,700,A0662E,FFFFFF
+O0422AAA0A,RIOI3,422,Grajaú - Cosme Velho,,700,B1B1B1,000000
+O0485AAA0A,RIOH1,485,Terminal Fundão - Gávea,,700,EA0A2A,FFFFFF
+O0616AAA0A,RIOH2,616,Del Castilho - Fundão,,700,EA0A2A,FFFFFF
+O0634AAA0A,RIOH2,634,Bananal - Saens Peña,,700,EA0A2A,FFFFFF
+O0634AAN0A,RIOH2,SN634,Bananal - Saens Peña,,700,EA0A2A,FFFFFF
+O0696AAA0A,RIOH2,696,Méier - Praia do Dendê,,700,EA0A2A,FFFFFF
+O0696AAN0A,RIOH2,SN696,Méier - Praia do Dendê,,700,EA0A2A,FFFFFF
+O0756AAA0A,RIOA1,756,Santa Cruz - Coelho Neto,,700,8330A5,FFFFFF
+O0731AAA0A,RIOB1,731,Campo Grande - Marechal Hermes,,700,FF7600,000000
+O0731AAN0A,RIOB1,SN731,Campo Grande - Marechal Hermes,,700,FF7600,000000
+O0745AAA0A,RIOC1,745,Bangu - Cascadura,,700,A0662E,FFFFFF
+O0759AAA0A,RIOA1,759,Cesarão - Coelho Neto,,700,8330A5,FFFFFF
+O0719AAA0A,RIOA1,719,Cesarão - Terminal Deodoro,,700,,
+O0746AAA0A,RIOC1,746,Jabour - Cascadura,,700,A0662E,FFFFFF
+O0737AAA0A,RIOC1,737,Santíssimo - Metrô Coelho Neto,,700,A0662E,FFFFFF
+O0741AAA0A,RIOC2,741,Terminal Sulacap - Bangu,,700,A0662E,FFFFFF
+O0743AAA0A,RIOC2,743,Terminal Sulacap - Bangu,,700,A0662E,FFFFFF
+O0802AAA0A,RIOC2,802,Terminal Campo Grande - Bangu,,700,A0662E,FFFFFF
+O0812AAA0A,RIOC2,812,Carobinha - Bangu,,700,A0662E,FFFFFF
+O0770AAA0A,RIOB1,770,Campo Grande - Metrô Coelho Neto,,700,FF7600,000000
+O0771AAA0A,RIOB1,771,Campo Grande - Metrô Coelho Neto,,700,FF7600,000000
+O0790AAA0A,RIOB1,790,Campo Grande - Cascadura,,700,FF7600,000000
+O0790AAN0A,RIOB1,SN790,Campo Grande - Cascadura,,700,FF7600,000000
+O0838AAA0A,RIOB6,838,Terminal Campo Grande - Terminal Magarça,,700,FF7600,000000
+O0866AAA0A,RIOB6,866,Terminal Campo Grande - Pedra de Guaratiba,,700,FF7600,000000
+O0796AAA0A,RIOB1,796,Cosmos - Terminal Deodoro,,700,FF7600,000000
+O0803AAA0A,RIOC1,803,Jabour - Taquara,,700,A0662E,FFFFFF
+O0803AAN0A,RIOC1,SN803,Jabour - Taquara,,700,A0662E,FFFFFF
+O0852AAA0A,RIOB8,852,Terminal Campo Grande - Pedra de Guaratiba,,700,FF7600,000000
+O0871AAA0A,RIOB6,871,Terminal Pingo d'Água - Cesarão,,700,FF7600,000000
+O0884AAA0A,RIOB6,884,Sepetiba - Terminal Campo Grande,,700,FF7600,000000
+O0884AAN0A,RIOB6,SN884,Sepetiba - Terminal Campo Grande,,700,FF7600,000000
+O0897AAA0A,RIOB6,897,Santa Cruz - Terminal Pingo d'Água,,700,FF7600,000000
+O0857AAN0A,RIOB8,SN857,Terminal Campo Grande - Terminal Pingo D'Água,,700,FF7600,000000
+O0867AAA0A,RIOB8,867,Barra de Guaratiba - Terminal Campo Grande,,700,FF7600,000000
+O0867AAN0A,RIOB8,SN867,Barra de Guaratiba - Terminal Campo Grande,,700,FF7600,000000
+O0885AAA0A,RIOB8,885,Terminal Mato Alto - Santa Cruz,,700,FF7600,000000
+O0885AAN0A,RIOB8,SN885,Terminal Mato Alto - Santa Cruz,,700,FF7600,000000
+O0854AAAAA,RIOB8,854,Terminal Campo Grande - Ilha de Guaratiba,,700,FF7600,000000
+O0915AAA0A,RIOH2,915,Bonsucesso - Aeroporto Internacional do RJ,,700,EA0A2A,FFFFFF
+O0918AAA0A,RIOC1,918,Bangu - Bonsucesso,,700,A0662E,FFFFFF
+O0718AAA0A,RIOC1,718,Jardim Violeta - Terminal Deodoro,,700,,
+O0926AAA0A,RIOC1,926,Senador Camará - Penha,,700,A0662E,FFFFFF
+89lo,RIOC2,SD812,Gericinó - Bangu,,700,,
+O0864AAA0A,RIOC2,SD864,Bangu - Terminal Campo Grande,,700,,
+O0897AAN0A,RIOB6,SN897,Santa Cruz - Terminal Pingo d'Água,,700,FF7600,000000
+O0866AAV0A,RIOB6,876,Terminal Campo Grande - Terminal Pingo d'Água,,700,,
+mxkw,RIOB6,877,Praia de Sepetiba - Vendas de Varanda,,700,,
+p90m,RIOB6,839,Pedra de Guaratiba - Jardim Maravilha,,700,,
+jsw9,RIOB8,SV820,Rio da Prata - Terminal Mato Alto,,700,,
+O0902AAA0A,RIOH2,902,Ribeira - Metrô Del Castilho,,700,,
+O0901AAA0A,RIOH2,901,Bananal - Metrô Del Castilho,,700,EA0A2A,FFFFFF
+O0910AAA0A,RIOH2,910,Terminal Fundão - Metrô Vicente de Carvalho,,700,EA0A2A,FFFFFF
+O0925AAA0A,RIOH2,925,Bancários - Aeroporto Internacional do RJ,,700,EA0A2A,FFFFFF
+O0916AAA0A,RIOH2,916,Bancários - Terminal Fundão,,700,,
+O0753AAA0A,RIOA1,753,Santa Cruz - Metrô Coelho Neto,,700,8330A5,FFFFFF
+O0819AAA0A,RIOC2,819,Jardim Bangu - Bangu,,700,A0662E,FFFFFF
+x8mq,RIOB6,815,Inhoaíba - Terminal Pingo D'Água,,700,,
+O0791AAA0A,RIOC2,791,Padre Miguel - Terminal Deodoro,,700,A0662E,FFFFFF
+O0764AAA0A,RIOC2,764,Catiri - Terminal Deodoro,,700,A0662E,FFFFFF
+O0790AAV0A,RIOB1,SV790,Campo Grande - Cascadura,,700,FF7600,000000
+O0922AAA0A,RIOH2,922,Tubiacanga - Terminal Fundão,,700,EA0A2A,FFFFFF
+O0798AAA0A,RIOB1,798,Urucânia - Terminal Deodoro,,700,FF7600,000000
+mxkq,RIOB6,827,Cabuçu de Baixo - Terminal Mato Alto,,700,,
+O0856AAA0A,RIOB8,856,Capoeira Grande - Terminal Campo Grande,,700,FF7600,000000
+O0765AAA0A,RIOB1,765,Largo do Mendanha - Terminal Deodoro,,700,FF7600,000000
+O0872AAA0A,RIOB8,872,Praia de Sepetiba - Terminal Mato Alto,,700,FF7600,000000
+O0857AAA0A,RIOB8,857,Terminal Campo Grande - Terminal Pingo d'Água,,700,FF7600,000000
+O0938AAA0A,RIOH2,938,Bananal - Terminal Fundão,,700,,

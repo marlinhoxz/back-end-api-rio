@@ -21,4 +21,8 @@ export type BusFilters = {
   servico?: string;
   sistema?: string
   modo?: Modo
+  minLat?: number
+  maxLat?: number
+  minLon?: number
+  maxLon?: number
 };

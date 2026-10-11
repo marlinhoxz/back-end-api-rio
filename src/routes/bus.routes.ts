@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getBuses } from "../controllers/bus.controllers.js";
+import { getBusCacheStatus, getBuses } from "../controllers/bus.controllers.js";
 
 const router = Router();
 
-router.get("/", getBuses) 
- 
+router.get("/", getBuses);
+
+router.get("/status", getBusCacheStatus);
 
 export default router;

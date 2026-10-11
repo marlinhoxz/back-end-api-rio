@@ -1,73 +1,117 @@
-import type { Request, Response } from "express";
+import type { BusApiResponse } from "../types/bus-api.ts";
+import type { Bus, BusFilters } from "../types/bus.ts";
+import {
+  getBusCache,
+  setBusCacheError,
+  updateBusCache,
+} from "./bus.cache.services.js";
 
-import type { BusFilters, Modo } from "../types/bus.js";
-import { getAllBuses } from "../controllers/bus.controllers.js";
+const API_URL = "https://its.mobilidade.rio/v1/geolocalizacao/veiculos";
 
-function isValidMinutoUtc(value: string): boolean {
-  const date = new Date(value);
+export async function getAllBuses(filter: BusFilters): Promise<Bus[]> {
+  const url = new URL(API_URL);
 
-  return (
-    !Number.isNaN(date.getTime()) &&
-    (value.endsWith("Z") || value.endsWith("+00:00"))
-  );
-}
-
-function isValidModo(value: string): value is Modo {
-  return value === "onibus" || value === "brt";
-}
-
-export async function getBuses(req: Request, res: Response) {
-  try {
-    const { minuto_utc, servico, sistema, modo } = req.query;
-
-    const minutoUtc = typeof minuto_utc === "string" ? minuto_utc : undefined;
-
-    const servicoValue = typeof servico === "string" ? servico : undefined;
-
-    const sistemaValue = typeof sistema === "string" ? sistema : undefined;
-
-    let modoValue: Modo | undefined;
-
-    if (typeof modo === "string" && isValidModo(modo)) {
-      modoValue = modo;
-    } else if (typeof modo === "string") {
-      return res.status(400).json({
-        error: "modo deve ser onibus ou brt",
-      });
-    }
-
-    if (minutoUtc && !isValidMinutoUtc(minutoUtc)) {
-      return res.status(400).json({
-        error: "minuto_utc deve ser uma data UTC válida",
-      });
-    }
-
-    const filter: BusFilters = {};
-
-    if (minutoUtc) {
-      filter.minuto_utc = minutoUtc;
-    }
-
-    if (servicoValue) {
-      filter.servico = servicoValue;
-    }
-
-    if (sistemaValue) {
-      filter.sistema = sistemaValue;
-    }
-
-    if (modoValue) {
-      filter.modo = modoValue;
-    }
-
-    const buses = await getAllBuses(filter);
-
-    res.json(buses);
-  } catch (error) {
-    console.error(error);
-
-    res.status(502).json({
-      error: "Não foi possivel buscar os ônibus",
-    });
+  if (filter.minuto_utc) {
+    url.searchParams.set("minuto_utc", filter.minuto_utc);
   }
+
+  if (filter.servico) {
+    url.searchParams.set("servico", filter.servico);
+  }
+
+  if (filter.sistema) {
+    url.searchParams.set("sistema", filter.sistema);
+  }
+
+  if (filter.modo) {
+    url.searchParams.set("modo", filter.modo);
+  }
+
+  const allBuses: Bus[] = [];
+  const seenCursors = new Set<string>();
+
+  let cursor: string | null = null;
+
+  while (true) {
+    if (cursor !== null) {
+      if (seenCursors.has(cursor)) {
+        throw new Error("A API retornou um cursor repetido");
+      }
+
+      seenCursors.add(cursor);
+      url.searchParams.set("cursor", cursor);
+    } else {
+      url.searchParams.delete("cursor");
+    }
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status}`);
+    }
+
+    const data: BusApiResponse = await response.json();
+
+    const buses: Bus[] = data.data.map((bus) => ({
+      id: bus.id_veiculo,
+      line: bus.servico,
+      latitude: bus.latitude,
+      longitude: bus.longitude,
+      speed: bus.velocidade,
+      direction: bus.direcao,
+      directionName: bus.sentido,
+      datetime: bus.datetime,
+    }));
+
+    allBuses.push(...buses);
+
+    cursor = data.next_cursor;
+
+    if (cursor === null) {
+      break;
+    }
+  }
+
+  return allBuses;
+}
+
+export async function refreshBusCache(): Promise<void> {
+  try {
+    const buses = await getAllBuses({});
+
+    updateBusCache(buses);
+    console.log("Cache de ônibus atualizado com sucesso.");
+  } catch (error) {
+    const cache = getBusCache();
+    if (cache.lastUpdate === null) {
+      setBusCacheError();
+    }
+    console.error("Erro ao atualizar o cache:", error);
+    throw error;
+  }
+}
+
+
+export function filterBusesByArea(buses: Bus[], filters: BusFilters): Bus[] {
+
+  const {minLat, maxLat, minLon, maxLon} = filters
+
+  if(
+    minLat === undefined ||
+    maxLat === undefined ||
+    minLon === undefined ||
+    maxLon === undefined
+  ) {
+    return buses
+  }
+
+  return buses.filter((bus) => {
+    return (
+      bus.latitude >= minLat &&
+      bus.latitude <= maxLat &&
+      bus.longitude >= minLon &&
+      bus.longitude <= maxLon
+    )
+  })
+
 }
