@@ -12,6 +12,9 @@ export type Bus = {
     direction: number
     directionName: string
     datetime: string
+    routeId: string
+    tripId: string
+    shapeId: string
 }
 
 export type Modo = 'onibus' | 'brt'

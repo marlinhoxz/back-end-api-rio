@@ -2,6 +2,8 @@ import express from "express";
 import busRouter from "./routes/bus.routes.js";
 import { refreshBusCache } from "./services/bus.services.js";
 import lineRouter from "./routes/line.routes.js";
+import { getRouteDirections } from "./services/gtfs.routes.services.js";
+import { getShapesPoints } from "./services/gtfs.services.js";
 
 
 const app = express();
@@ -25,6 +27,18 @@ try {
 }
 }
 
+// Resolve o problema do primeiro usuario ter que esperar mais tempo para ter acesso aos dados.
+async function preloadGtfs() {
+  
+  try {
+    await Promise.all(([getRouteDirections(''), getShapesPoints('')]))
+    console.log('GTFS carregado em memória')
+  } catch (error) {
+    console.error("Falha ao pré-carregar o GTFS", error)
+  }
+}
+
+
 
 
 app.get("/", (req, res) => {
@@ -42,6 +56,8 @@ app.listen(PORT, () => {
 });
 
 void updateCacheSafely().catch(() => {});
+
+void preloadGtfs()
 
 setInterval(() => {
   void updateCacheSafely().catch(() => {});

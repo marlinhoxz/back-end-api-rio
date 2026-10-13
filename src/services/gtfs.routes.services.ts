@@ -39,10 +39,14 @@ export type RouteDirection = {
   shapeId: string;
 };
 
-async function buildIndex(): Promise<Map<string, RouteDirection[]>> {
-  
+type RouteIndexes = {
+  byLine: Map<string, RouteDirection[]>;
+  byRouteId: Map<string, RouteDirection[]>;
+};
 
+async function buildIndex(): Promise<RouteIndexes> {
   const routes = await readCsv("routes.txt", ["route_id", "route_short_name"]);
+
   const lineByRouteId = new Map<string, string>();
 
   for (const route of routes) {
@@ -56,30 +60,39 @@ async function buildIndex(): Promise<Map<string, RouteDirection[]>> {
     "shape_id",
   ]);
 
-  const index = new Map<string, RouteDirection[]>();
+  const byLine = new Map<string, RouteDirection[]>();
+  const byRouteId = new Map<string, RouteDirection[]>();
   const seen = new Set<string>();
 
   for (const trip of trips) {
     const line = lineByRouteId.get(trip.route_id);
+
     if (line === undefined) continue;
 
-    const key = `${line}|${trip.direction_id}|${trip.shape_id}`;
+    const key = `${trip.route_id}|${trip.direction_id}|${trip.shape_id}`;
+
     if (seen.has(key)) continue;
     seen.add(key);
 
-    const directions = index.get(line) ?? [];
-    directions.push({
+    const direction: RouteDirection = {
       directionId: trip.direction_id,
       destination: trip.trip_headsign,
       shapeId: trip.shape_id,
-    });
-    index.set(line, directions);
+    };
+
+    const lineDirections = byLine.get(line) ?? [];
+    lineDirections.push(direction);
+    byLine.set(line, lineDirections);
+
+    const routeDirections = byRouteId.get(trip.route_id) ?? [];
+    routeDirections.push(direction);
+    byRouteId.set(trip.route_id, routeDirections);
   }
 
-  return index;
+  return { byLine, byRouteId };
 }
 
-let indexPromise: Promise<Map<string, RouteDirection[]>> | null = null;
+let indexPromise: Promise<RouteIndexes> | null = null;
 
 export async function getRouteDirections(
   line: string,
@@ -90,5 +103,17 @@ export async function getRouteDirections(
   });
 
   const index = await indexPromise;
-  return index.get(line) ?? [];
+  return index.byLine.get(line) ?? [];
+}
+
+export async function getRouteDirectionsByRouteId(
+  routeId: string,
+): Promise<RouteDirection[]> {
+  indexPromise ??= buildIndex().catch((error) => {
+    indexPromise = null;
+    throw error;
+  });
+
+  const index = await indexPromise;
+  return index.byRouteId.get(routeId) ?? [];
 }

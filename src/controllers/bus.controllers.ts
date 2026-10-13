@@ -2,9 +2,15 @@ import type { Request, Response } from "express";
 
 import type { BusFilters, Modo } from "../types/bus.js";
 
-import { filterBusesByArea, getAllBuses } from "../services/bus.services.js";
+import {
+  filterBusesByArea,
+  getAllBuses,
+  getCachedBusById,
+} from "../services/bus.services.js";
 
 import { getBusCache } from "../services/bus.cache.services.js";
+
+import { findBestShapeForBus } from "../services/bus-route.services.js";
 
 function isValidMinutoUtc(value: string): boolean {
   const date = new Date(value);
@@ -159,4 +165,52 @@ export function getBusCacheStatus(req: Request, res: Response) {
     totalBuses: cache.buses.length,
     lastUpdate: cache.lastUpdate,
   });
+}
+
+export async function getBusRoute(req: Request, res: Response) {
+  const cache = getBusCache();
+
+  if (cache.lastUpdate === null) {
+    return res.status(503).json({
+      error: "Os dados dos ônibus ainda não estão disponíveis.",
+    });
+  }
+
+  const id = req.params.id;
+
+  if (typeof id !== "string") {
+    return res.status(400).json({
+      error: "ID do ônibus inválido.",
+    });
+  }
+
+  const bus = getCachedBusById(id);
+
+  if (!bus) {
+    return res.status(404).json({
+      error: "Ônibus não encontrado no cache.",
+    });
+  }
+
+  try {
+    const route = await findBestShapeForBus(bus);
+
+    if (!route) {
+      return res.status(404).json({
+        error: "Nenhum trajeto GTFS encontrado para este ônibus.",
+      });
+    }
+
+    return res.json({
+      busId: bus.id,
+      line: bus.line,
+      ...route,
+    });
+  } catch (error) {
+    console.error("Erro ao identificar trajeto:", error);
+
+    return res.status(500).json({
+      error: "Não foi possível identificar o trajeto.",
+    });
+  }
 }

@@ -61,6 +61,9 @@ export async function getAllBuses(filter: BusFilters): Promise<Bus[]> {
       direction: bus.direcao,
       directionName: bus.sentido,
       datetime: bus.datetime,
+      routeId: bus.route_id,
+      tripId: bus.trip_id,
+      shapeId: bus.shape_id
     }));
 
     allBuses.push(...buses);
@@ -114,4 +117,10 @@ export function filterBusesByArea(buses: Bus[], filters: BusFilters): Bus[] {
     )
   })
 
+}
+
+export function getCachedBusById(id: string): Bus | undefined {
+  const cache = getBusCache();
+
+  return cache.buses.find((bus) => bus.id === id);
 }

@@ -1,10 +1,6 @@
 agency_id,agency_name,agency_url,agency_timezone,agency_lang
-RIOA1,A1 - Santa Cruz,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOC1,C1 - Bangu,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOC2,C2 - Bangu,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOB1,B1 - Campo Grande Norte,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOB6,B6 - Guaratiba Oeste,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOB8,B8 - Guaratiba Leste,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOH1,H1 - Ilha,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOH2,H2 - Ilha,https://prefeitura.rio/,America/Sao_Paulo,pt
-RIOI3,I3 - Vila Isabel,https://prefeitura.rio/,America/Sao_Paulo,pt
+22003,Internorte,http://www.rioonibus.com/,America/Sao_Paulo,pt
+22002,Intersul,http://www.rioonibus.com/,America/Sao_Paulo,pt
+22005,Santa Cruz,http://www.rioonibus.com/,America/Sao_Paulo,pt
+22004,Transcarioca,http://www.rioonibus.com/,America/Sao_Paulo,pt
+20001,MOBI-Rio,http://mobi-rio.rio.br/,America/Sao_Paulo,pt

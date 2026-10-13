@@ -8,7 +8,7 @@ export async function getLineDirections(req: Request, res: Response) {
 
     if (!line) {
       return res.status(400).json({
-        error: "Informe o n-umero da linha",
+        error: "Informe o número da linha",
       });
     }
 
