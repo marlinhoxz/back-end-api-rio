@@ -12,11 +12,13 @@
   "type": "module",
   "dependencies": {
     "adm-zip": "^0.6.1",
+    "cors": "^2.8.6",
     "csv-parse": "^7.0.3",
     "express": "^5.2.1",
     "gtfs": "^4.21.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.4",
     "tsx": "^4.23.15",

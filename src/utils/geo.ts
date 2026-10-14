@@ -59,7 +59,31 @@ export function distanceToPathMeters(
     }
 
     return best
-
-
-
 }
+
+const EARTH_RADIUS_METERS = 6_371_000;
+
+export function distanceBetweenPoints(
+  pointA: GeoPoint,
+  pointB: GeoPoint,
+): number {
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+
+  const latitudeA = toRadians(pointA.latitude);
+  const latitudeB = toRadians(pointB.latitude);
+
+  const latitudeDifference = latitudeB - latitudeA;
+  const longitudeDifference = toRadians(pointB.longitude - pointA.longitude);
+
+  const haversine =
+    Math.sin(latitudeDifference / 2) ** 2 +
+    Math.cos(latitudeA) *
+      Math.cos(latitudeB) *
+      Math.sin(longitudeDifference / 2) ** 2;
+
+  return (
+    2 *
+    EARTH_RADIUS_METERS *
+    Math.asin(Math.sqrt(Math.min(1, haversine)))
+  );
+}
